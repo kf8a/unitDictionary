@@ -1,0 +1,14 @@
+A ruby interface to the unit dictionary at http://oceaninformatics.ucsd.edu/services/unitregistry
+Uses a prefix character on the parameter value to indicate whether to search for exact =' or approximate '~' matches
+
+== Usage: 
+
+  * UnitDictionary.find(:all)
+  * UnitDictionary.find(42)
+  * UnitDictionary.find(:all, :params => {'name' => '=meter'})
+  * UnitDictionary.find(:all, :params => {'name' => '~meter'})
+  
+== Dependencies:
+
+  * JSON gem http://github.com/flori/json
+  * Rest-Client gem http://github.com/archiloque/rest-client
