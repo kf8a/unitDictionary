@@ -20,14 +20,14 @@ class UnitDictionary
     # * <tt>:params</tt> - Sets query and \prefix (nested URL) parameters.
     #
     # ==== Examples
-    #   Person.find(1)
-    #   # => GET /people/1.xml
+    #   UnitDictionary.find(1)
+    #   # => GET /unit_dictionary/1.xml
     #
-    #   Person.find(:all)
-    #   # => GET /people.xml
+    #   UnitDictionary.find(:all)
+    #   # => GET /unit_dictionary.xml
     #
-    #   Person.find(:all, :params => { :title => "CEO" })
-    #   # => GET /people.xml?title=CEO
+    #   UnitDictionary.find(:all, :params => { :title => "CEO" })
+    #   # => GET /unit_dictionary.xml?title=CEO
     #
     #
     # == Failure or missing data
@@ -35,12 +35,12 @@ class UnitDictionary
     #   exception if the find was called with an id.
     #   With any other scope, find returns nil when no data is returned.
     #
-    #   Person.find(1)
+    #   UnitDictionary.find(1)
     #   # => raises ResourcenotFound
     #
-    #   Person.find(:all)
-    #   Person.find(:first)
-    #   Person.find(:last)
+    #   UnitDictionary.find(:all)
+    #   UnitDictionary.find(:first)
+    #   UnitDictionary.find(:last)
     #   # => nil
     def find(*arguments)
       scope   = arguments.slice!(0)

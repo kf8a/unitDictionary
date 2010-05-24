@@ -26,6 +26,7 @@ class UnitDictionaryTest < Test::Unit::TestCase
     end
 
     #TODO rethink the interface for exact and approximate searches.
+    #TODO interface for OR and NOT
     should 'return an array of units with meter in the name' do
       unit_meter = UnitDictionary.find(:all, {'name' => '=meter'})
       assert unit_meter.kind_of?(Array)
