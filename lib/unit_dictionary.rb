@@ -21,13 +21,17 @@ class UnitDictionary
     #
     # ==== Examples
     #   UnitDictionary.find(1)
-    #   # => GET /unit_dictionary/1.xml
     #
     #   UnitDictionary.find(:all)
-    #   # => GET /unit_dictionary.xml
     #
-    #   UnitDictionary.find(:all, :params => { :title => "CEO" })
-    #   # => GET /unit_dictionary.xml?title=CEO
+    # == Exact find
+    #   UnitDictionary.find(:all, { 'name' => "=meter" })
+    #
+    # == Approximate find
+    #   UnitDictionary.find(:all, {'name' => '~meter'})
+    #
+    # == Multiple find
+    #   UnitDictionary.find(:all, [{'name' => '~meter}, {'name=>'~milli'}])
     #
     #
     # == Failure or missing data
