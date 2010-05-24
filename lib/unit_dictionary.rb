@@ -90,12 +90,21 @@ class UnitDictionary
     end
     
     def find_every(options)
-      params = options[:params]
-      query_string = params.keys.collect do |k|
-        "#{k}#{params[k]}"
-      end.join('AND')
+      query_string = if options.kind_of?(Array)
+        options.collect do |option|
+          parse_options(option)
+        end.join('AND')
+      else
+        parse_options(options)
+      end
+      
       JSON[RestClient.get "#{@site}/unit/#{query_string}", :accept => 'json']
     end
-
+    
+    def parse_options(options)
+      options.keys.collect do |k|
+        "#{k}#{options[k]}"
+      end.join('AND')
+    end
   end
 end
