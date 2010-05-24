@@ -85,7 +85,7 @@ class UnitDictionary
     
     private
     # Find a single record given the ID
-    def find_single(scope)
+    def find_single(scope)      
       JSON[RestClient.get "#{@site}/unit/#{scope}", :accept=>'json'][0]
     end
     
