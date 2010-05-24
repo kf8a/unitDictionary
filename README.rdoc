@@ -5,8 +5,9 @@ Uses a prefix character on the parameter value to indicate whether to search for
 
   * UnitDictionary.find(:all)
   * UnitDictionary.find(42)
-  * UnitDictionary.find(:all, :params => {'name' => '=meter'})
-  * UnitDictionary.find(:all, :params => {'name' => '~meter'})
+  * UnitDictionary.find(:all, {'name' => '=meter'})
+  * UnitDictionary.find(:all, {'name' => '~meter'})
+  * UnitDictionary.find(:all, [{'name'=>'~meter'},{'name'=>'~milli'}])
   
 == Dependencies:
 
