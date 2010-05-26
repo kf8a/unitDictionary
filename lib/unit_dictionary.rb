@@ -3,6 +3,8 @@ require 'json'
 
 class UnitDictionary 
   @site = 'http://oceaninformatics.ucsd.edu/services/unitregistry'  
+  @scope = ['kbs', 'eml-2.1.0']
+#  @deprecated = false
   class << self
     # Core method for finding resources.  Copied from Active Resource
     # Used similarly to Active Record's +find+ method.
@@ -102,6 +104,8 @@ class UnitDictionary
         parse_options(options)
       end
       
+      query_string += conditions
+      
       JSON[RestClient.get "#{@site}/unit/#{query_string}", :accept => 'json']
     end
     
@@ -110,5 +114,29 @@ class UnitDictionary
         "#{k}#{options[k]}"
       end.join('AND')
     end
+    
+    def conditions
+       scope_conditions #+ deprecated_condition
+     end
+
+     def scope_conditions
+       result = ''
+       unless @scope.empty?
+         result += 'AND('
+         scopes = @scope.collect do |s|
+           'scope=' + s
+         end
+         result += scopes.join('OR')
+         result +=')'
+       end
+       result
+     end
+
+     def deprecated_condition
+       result = ''
+       result = 'ANDisDeprecated=false' unless @deprecated
+       result
+     end
+    
   end
 end
