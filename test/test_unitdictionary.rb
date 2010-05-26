@@ -24,6 +24,12 @@ class UnitDictionaryTest < Test::Unit::TestCase
       assert @unit42['uniqueId'] == "42"
       assert @unit43['uniqueId'] == "43"
     end
+    
+    should 'return an array of units if called with :all' do
+      units = UnitDictionary.find(:all)
+      assert units.kind_of?(Array)
+      assert !units.empty?
+    end
 
     #TODO rethink the interface for exact and approximate searches.
     #TODO interface for OR and NOT

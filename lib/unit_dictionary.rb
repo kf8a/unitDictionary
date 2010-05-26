@@ -3,7 +3,7 @@ require 'json'
 
 class UnitDictionary 
   @site = 'http://oceaninformatics.ucsd.edu/services/unitregistry'  
-  @scope = ['kbs', 'eml-2.1.0']
+  @scope = ['KBS-LTER', 'EML-2.1.0']
 #  @deprecated = false
   class << self
     # Core method for finding resources.  Copied from Active Resource
@@ -104,8 +104,12 @@ class UnitDictionary
         parse_options(options)
       end
       
-      query_string += conditions
-      
+      if query_string.empty?
+        query_string = conditions
+      else
+        query_string += 'AND'+conditions
+      end
+
       JSON[RestClient.get "#{@site}/unit/#{query_string}", :accept => 'json']
     end
     
@@ -122,7 +126,7 @@ class UnitDictionary
      def scope_conditions
        result = ''
        unless @scope.empty?
-         result += 'AND('
+         result += '('
          scopes = @scope.collect do |s|
            'scope=' + s
          end
